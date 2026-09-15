@@ -53,6 +53,7 @@ app.add_middleware(
         "http://localhost:5175",
         "http://127.0.0.1:5175",
         "http://[::1]:5175",
+        "https://positioniq-app.vercel.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
