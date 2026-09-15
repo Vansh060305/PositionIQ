@@ -1,0 +1,23 @@
+# Env / secrets
+.env
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# Node / frontend (used from Phase 9 onward)
+node_modules/
+dist/
+
+# Editor
+.vscode/
+
+# Docker volume data (if it ever gets created outside the named volume)
+postgres_data/
+
+.freebuff/
+
+
+.coverage

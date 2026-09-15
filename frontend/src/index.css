@@ -1,0 +1,227 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global resets and the NiveshMitra reference look (dark surfaces,
+   soft borders, gradient accents, pill CTAs). PositionIQ keeps its own
+   content - this file only owns the visual layer. */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-base text-ink antialiased;
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background:
+      radial-gradient(
+        900px 500px at 12% -8%,
+        rgba(66, 133, 244, 0.12) 0%,
+        transparent 55%
+      ),
+      radial-gradient(
+        900px 600px at 90% 0%,
+        rgba(155, 114, 203, 0.1) 0%,
+        transparent 55%
+      ),
+      #131314;
+    background-attachment: fixed;
+  }
+  /* Browsers underline <a> tags by default - not reset by Tailwind */
+  a {
+    text-decoration: none;
+  }
+  /* Visible keyboard focus everywhere */
+  :focus-visible {
+    outline: 3px solid rgba(138, 180, 248, 0.5);
+    outline-offset: 3px;
+  }
+  ::selection {
+    background: #4285f4;
+    color: #fff;
+  }
+  /* Thin rounded scrollbars (Gemini-like) */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #444746 transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: #333537;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    background: #444746;
+    background-clip: content-box;
+  }
+}
+
+@layer components {
+  /* Gradient brand text - the NiveshMitra signature */
+  .text-brand {
+    background: linear-gradient(74deg, #4285f4 0%, #9b72cb 46%, #d96570 92%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Vivid blue->purple pill CTA with glow */
+  .btn-primary {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: none;
+    border-radius: 999px;
+    background: linear-gradient(100deg, #2b6cff 0%, #6a5cff 50%, #a855f7 100%);
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 8px 26px rgba(108, 92, 255, 0.45);
+    transition:
+      transform 0.18s ease,
+      box-shadow 0.22s ease;
+  }
+  .btn-primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 38px rgba(108, 92, 255, 0.5);
+  }
+  .btn-primary:active:not(:disabled) {
+    transform: translateY(0) scale(0.98);
+  }
+  .btn-primary:disabled {
+    opacity: 0.6;
+    cursor: default;
+    box-shadow: none;
+  }
+
+  /* Outlined pill button */
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 999px;
+    border: 1px solid #444746;
+    background: #1e1f20;
+    color: #e3e3e3;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+      border-color 0.16s ease,
+      background 0.16s ease,
+      transform 0.16s ease;
+  }
+  .btn-ghost:hover:not(:disabled) {
+    border-color: #8ab4f8;
+    background: #282a2c;
+    transform: translateY(-1px);
+  }
+
+  /* Section eyebrow pill with a green dot */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #8ab4f8;
+    background: rgba(30, 31, 32, 0.7);
+    border: 1px solid #333537;
+    border-radius: 999px;
+    padding: 6px 12px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #81c995;
+    box-shadow: 0 0 14px #81c995;
+  }
+
+  /* Standard panel card */
+  .card {
+    background: #1e1f20;
+    border: 1px solid #333537;
+    border-radius: 16px;
+  }
+
+  /* Form input (dark, soft border, focus glow) */
+  .input {
+    width: 100%;
+    background: #282a2c;
+    color: #e3e3e3;
+    border: 1px solid #444746;
+    border-radius: 12px;
+    padding: 12px 14px;
+    font: inherit;
+    font-size: 14.5px;
+    transition:
+      border-color 0.18s ease,
+      box-shadow 0.18s ease;
+  }
+  .input::placeholder {
+    color: #9aa0a6;
+  }
+  .input:focus {
+    outline: none;
+    border-color: #8ab4f8;
+    box-shadow: 0 0 0 3px rgba(138, 180, 248, 0.15);
+  }
+  .input:disabled {
+    opacity: 0.6;
+  }
+
+  /* Range slider (simulator) */
+  .slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 5px;
+    margin: 12px 0 8px;
+    border-radius: 999px;
+    background: #2d2f31;
+    cursor: pointer;
+    outline: none;
+  }
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #e3e3e3;
+    border: 3px solid #282a2c;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    cursor: grab;
+    transition: transform 0.12s ease;
+  }
+  .slider::-webkit-slider-thumb:active {
+    transform: scale(1.2);
+    cursor: grabbing;
+  }
+  .slider::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #e3e3e3;
+    border: 3px solid #282a2c;
+    cursor: grab;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
